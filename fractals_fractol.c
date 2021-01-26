@@ -6,12 +6,11 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 19:10:36 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 23:20:53 by jsankari         ###   ########.fr       */
+/*   Updated: 2021/01/26 23:26:54 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 void	julia(t_mom *mom)
 {

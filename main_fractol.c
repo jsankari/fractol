@@ -6,7 +6,7 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 17:57:18 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 20:23:27 by jsankari         ###   ########.fr       */
+/*   Updated: 2021/01/26 23:33:03 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_mom	initialize_fractol(char **av)
 	mom.reim.maxre = 1.0;
 	mom.reim.minim = -1.0;
 	mom.reim.maxim = 1.0;
-	mom.reim.maxit = 100;
+	mom.reim.maxit = 50;
 	mom.fracnum = fractal_number(av[1]);
 	mom.reim.imfactor = (mom.reim.maxim - mom.reim.minim) / (mom.win.hei);
 	mom.reim.refactor = (mom.reim.maxre - mom.reim.minre) / (mom.win.wid);

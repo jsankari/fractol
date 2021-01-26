@@ -6,7 +6,7 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 12:12:51 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 23:02:42 by jsankari         ###   ########.fr       */
+/*   Updated: 2021/01/26 23:29:20 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define FRACTOL_H
 
 # include <math.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
 # include "mlx.h"
 # include "defines_fractol.h"
 # include "libft/libft.h"
