@@ -6,7 +6,7 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 17:57:18 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 14:36:45 by jsankari         ###   ########.fr       */
+/*   Updated: 2021/01/26 20:23:27 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_mom	initialize_fractol(char **av)
 	mom.win.hei = 1200;
 	if (!(mom.mlx_ptr = mlx_init()))
 		exit(0);
-	mom.instructions = 1;
 	mom.win_ptr = mlx_new_window(mom.mlx_ptr, mom.win.wid, mom.win.hei, av[1]);
 	mom.img_ptr = mlx_new_image(mom.mlx_ptr, mom.win.wid, mom.win.hei);
 	mom.pix_ray = (int*)mlx_get_data_addr(mom.img_ptr,
@@ -48,6 +47,8 @@ t_mom	initialize_fractol(char **av)
 	mom.reim.maxim = 1.0;
 	mom.reim.maxit = 100;
 	mom.fracnum = fractal_number(av[1]);
+	mom.reim.imfactor = (mom.reim.maxim - mom.reim.minim) / (mom.win.hei);
+	mom.reim.refactor = (mom.reim.maxre - mom.reim.minre) / (mom.win.wid);
 	return (mom);
 }
 
@@ -62,7 +63,7 @@ int		main(int ac, char **av)
 	mlx_hook(mom.win_ptr, 33, 0, close_window, &mom);
 	mlx_hook(mom.win_ptr, 6, 1L << 6, mouse_move, &mom);
 	mlx_hook(mom.win_ptr, 4, 1L << 2, mouse_button, &mom);
-	mlx_loop_hook(mom.mlx_ptr, key_hook, &mom);
+	mlx_loop_hook(mom.mlx_ptr, draw_fractals, &mom);
 	mlx_loop(mom.mlx_ptr);
 	return (0);
 }

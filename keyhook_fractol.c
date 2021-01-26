@@ -6,36 +6,12 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 19:10:36 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 14:37:54 by jsankari         ###   ########.fr       */
+/*   Updated: 2021/01/26 20:34:05 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
-
-/*void	ft_color(double n, t_mom *mom)
-{
-	if (n >= 0 && n <= 9)
-		mom->pix_ray[mom->loc.y * mom->win.wid + mom->loc.x] = C_PURPLE;
-	else if (n >= 10 && n <= 19)
-		mom->pix_ray[mom->loc.y * mom->win.wid + mom->loc.x] = C_INDIGO;
-	else if (n >= 20 && n <= 29)
-		mom->pix_ray[mom->loc.y * mom->win.wid + mom->loc.x] = C_BLUE;
-	else if (n >= 30 && n <= 39)
-		mom->pix_ray[mom->loc.y * mom->win.wid + mom->loc.x] = C_GREEN;
-	else if (n >= 40 && n <= 49)
-		mom->pix_ray[mom->loc.y * mom->win.wid + mom->loc.x] = C_LIME;
-	else if (n >= 50 && n <= 59)
-		mom->pix_ray[mom->loc.y * mom->win.wid + mom->loc.x] = C_YELLOW;
-	else if (n >= 60 && n <= 69)
-		mom->pix_ray[mom->loc.y * mom->win.wid + mom->loc.x] = C_ORANGE;
-	else if (n >= 70 && n <= 79)
-		mom->pix_ray[mom->loc.y * mom->win.wid + mom->loc.x] = C_RED;
-	else if (n >= 80 && n <= 89)
-		mom->pix_ray[mom->loc.y * mom->win.wid + mom->loc.x] = C_BURGUNDY;
-	else if (n >= 90 && n <= 100)
-		mom->pix_ray[mom->loc.y * mom->win.wid + mom->loc.x] = C_BLOOD;
-}*/
 
 void	ft_color(double n, t_mom *mom)
 {
@@ -64,143 +40,116 @@ void	ft_color(double n, t_mom *mom)
 void	julia(t_mom *mom)
 {
 	int		n;
-	double	c_re;
-	double	c_im;
-	double	z_re;
-	double	z_im;
-	double	z_re2;
-	double	z_im2;
 
 	n = 0;
-	mom->reim.imfactor = (mom->reim.maxim - mom->reim.minim) / (mom->win.hei);
-	mom->reim.refactor = (mom->reim.maxre - mom->reim.minre) / (mom->win.wid);
-	mom->loc.y = 0;
-	mom->loc.x = 0;
-	ft_memset(mom->pix_ray, 0, (mom->win.hei * mom->win.wid * 4));
 	while (mom->loc.y < mom->win.hei)
 	{
 		mom->loc.x = 0;
 		while (mom->loc.x < mom->win.wid)
 		{
-			z_im = mom->reim.maxim - (mom->loc.y + mom->loc.offy) * mom->reim.imfactor * mom->loc.zoom;
-			z_re = mom->reim.minre + (mom->loc.x + mom->loc.offx) * mom->reim.refactor * mom->loc.zoom;
-			c_re = mom->reim.minre + mom->mpx * mom->reim.refactor;
-			c_im = mom->reim.maxim - mom->mpy * mom->reim.imfactor;
+			mom->reim.z_im = mom->reim.maxim - (mom->loc.y + mom->loc.offy) * mom->reim.imfactor * mom->loc.zoom;
+			mom->reim.z_re = mom->reim.minre + (mom->loc.x + mom->loc.offx) * mom->reim.refactor * mom->loc.zoom;
 			n = 0;
 			while (n < mom->reim.maxit)
 			{
-				z_re2 = z_re * z_re;
-				z_im2 = z_im * z_im;
-				z_im = 2 * z_re * z_im + c_im;
-				z_re = z_re2 - z_im2 + c_re;
-				if (z_re2 + z_im2 > 4)
+				mom->reim.z_re2 = mom->reim.z_re * mom->reim.z_re;
+				mom->reim.z_im2 = mom->reim.z_im * mom->reim.z_im;
+				mom->reim.z_im = 2 * mom->reim.z_re * mom->reim.z_im + mom->reim.c_im;
+				mom->reim.z_re = mom->reim.z_re2 - mom->reim.z_im2 + mom->reim.c_re;
+				if (mom->reim.z_re2 + mom->reim.z_im2 > 4)
 				{
 					ft_color(n, mom);
 					break ;
 				}
+				mom->reim.c_re = mom->reim.minre + mom->mpx * mom->reim.refactor;
+				mom->reim.c_im = mom->reim.maxim - mom->mpy * mom->reim.imfactor;
 				n++;
 			}
 			mom->loc.x++;
 		}
 		mom->loc.y++;
 	}
-	mlx_put_image_to_window(mom->mlx_ptr, mom->win_ptr, mom->img_ptr, 0, 0);
 }
 
 void	mandelbrot(t_mom *mom)
 {
 	int		n;
-	double	c_re;
-	double	c_im;
-	double	z_re;
-	double	z_im;
-	double	z_re2;
-	double	z_im2;
 
 	n = 0;
-	mom->reim.imfactor = (mom->reim.maxim - mom->reim.minim) / (mom->win.hei);
-	mom->reim.refactor = (mom->reim.maxre - mom->reim.minre) / (mom->win.wid);
-	mom->loc.y = 0;
-	mom->loc.x = 0;
-	ft_memset(mom->pix_ray, 0, (mom->win.hei * mom->win.wid * 4));
 	while (mom->loc.y < mom->win.hei)
 	{
-		c_im = mom->reim.maxim - (mom->loc.y + mom->loc.offy) * mom->reim.imfactor * mom->loc.zoom;
+		mom->reim.c_im = mom->reim.maxim - (mom->loc.y + mom->loc.offy) * mom->reim.imfactor * mom->loc.zoom;
 		mom->loc.x = 0;
 		while (mom->loc.x < mom->win.wid)
 		{
-			c_re = mom->reim.minre + (mom->loc.x + mom->loc.offx) * mom->reim.refactor * mom->loc.zoom;
-			z_re = c_re;
-			z_im = c_im;
+			mom->reim.c_re = mom->reim.minre + (mom->loc.x + mom->loc.offx) * mom->reim.refactor * mom->loc.zoom;
+			mom->reim.z_re = mom->reim.c_re;
+			mom->reim.z_im = mom->reim.c_im;
 			n = 0;
 			while (n < mom->reim.maxit)
 			{
-				z_re2 = z_re * z_re;
-				z_im2 = z_im * z_im;
-				if (z_re2 + z_im2 > 4)
+				mom->reim.z_re2 = mom->reim.z_re * mom->reim.z_re;
+				mom->reim.z_im2 = mom->reim.z_im * mom->reim.z_im;
+				if (mom->reim.z_re2 + mom->reim.z_im2 > 4)
 				{
 					ft_color(n, mom);
 					break ;
 				}
-				z_im = 2 * z_re * z_im + c_im;
-				z_re = z_re2 - z_im2 + c_re;
+				mom->reim.z_im = 2 * mom->reim.z_re * mom->reim.z_im + mom->reim.c_im;
+				mom->reim.z_re = mom->reim.z_re2 - mom->reim.z_im2 + mom->reim.c_re;
 				n++;
 			}
 			mom->loc.x++;
 		}
 		mom->loc.y++;
 	}
-	mlx_put_image_to_window(mom->mlx_ptr, mom->win_ptr, mom->img_ptr, 0, 0);
 }
 
 void	burningship(t_mom *mom)
 {
 	int		n;
-	double	c_re;
-	double	c_im;
-	double	z_re;
-	double	z_im;
-	double	z_re2;
-	double	z_im2;
 
 	n = 0;
-	mom->reim.imfactor = (mom->reim.maxim - mom->reim.minim) / (mom->win.hei);
-	mom->reim.refactor = (mom->reim.maxre - mom->reim.minre) / (mom->win.wid);
-	mom->loc.y = 0;
-	mom->loc.x = 0;
-	ft_memset(mom->pix_ray, 0, (mom->win.hei * mom->win.wid * 4));
 	while (mom->loc.y < mom->win.hei)
 	{
-		c_im = mom->reim.maxim - (mom->loc.y + mom->loc.offy) * mom->reim.imfactor * mom->loc.zoom;
+		mom->reim.c_im = mom->reim.maxim - (mom->loc.y + mom->loc.offy) * mom->reim.imfactor * mom->loc.zoom;
 		mom->loc.x = 0;
 		while (mom->loc.x < mom->win.wid)
 		{
-			c_re = mom->reim.minre + (mom->loc.x + mom->loc.offx) * mom->reim.refactor * mom->loc.zoom;
-			z_re = c_re;
-			z_im = c_im;
+			mom->reim.c_re = mom->reim.minre + (mom->loc.x + mom->loc.offx) * mom->reim.refactor * mom->loc.zoom;
+			mom->reim.z_re = mom->reim.c_re;
+			mom->reim.z_im = mom->reim.c_im;
 			n = 0;
 			while (n < mom->reim.maxit)
 			{
-				z_re2 = z_re * z_re;
-				z_im2 = z_im * z_im;
-				z_im = fabs(2 * z_re * z_im) + c_im;
-				z_re = z_re2 - z_im2 + c_re;
-				if (z_re2 + z_im2 > 4)
+				mom->reim.z_re2 = mom->reim.z_re * mom->reim.z_re;
+				mom->reim.z_im2 = mom->reim.z_im * mom->reim.z_im;
+				if (mom->reim.z_re2 + mom->reim.z_im2 > 4)
 				{
 					ft_color(n, mom);
 					break ;
 				}
+				mom->reim.z_im = fabs(2 * mom->reim.z_re * mom->reim.z_im) + mom->reim.c_im;
+				mom->reim.z_re = mom->reim.z_re2 - mom->reim.z_im2 + mom->reim.c_re;
 				n++;
 			}
 			mom->loc.x++;
 		}
 		mom->loc.y++;
 	}
-	mlx_put_image_to_window(mom->mlx_ptr, mom->win_ptr, mom->img_ptr, 0, 0);
 }
 
-int		key_hook(t_mom *mom)
+int		draw_fractals(t_mom *mom)
 {
+	mom->reim.c_re = 0;
+	mom->reim.c_im = 0;
+	mom->reim.z_re = 0;
+	mom->reim.z_im = 0;
+	mom->reim.z_re2 = 0;
+	mom->reim.z_im2 = 0;
+	mom->loc.y = 0;
+	mom->loc.x = 0;
+	ft_memset(mom->pix_ray, 0, (mom->win.hei * mom->win.wid * 4));
 	if (mom->fracnum == 1)
 		mandelbrot(mom);
 	else if (mom->fracnum == 2)
@@ -209,5 +158,6 @@ int		key_hook(t_mom *mom)
 		burningship(mom);
 	else
 		errors(1);
+	mlx_put_image_to_window(mom->mlx_ptr, mom->win_ptr, mom->img_ptr, 0, 0);
 	return (0);
 }

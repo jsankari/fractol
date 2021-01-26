@@ -6,7 +6,7 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 12:12:51 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 14:33:01 by jsankari         ###   ########.fr       */
+/*   Updated: 2021/01/26 20:23:17 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ typedef struct		s_reim
 	double			minim;
 	double			maxim;
 	int				maxit;
+	double			c_re;
+	double			c_im;
+	double			z_re;
+	double			z_im;
+	double			z_re2;
+	double			z_im2;
 }					t_reim;
 
 typedef struct		s_win
@@ -52,13 +58,11 @@ typedef struct		s_mom
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;
-	char			*fracnam;
 	int				fracnum;
 	int				*pix_ray;
 	int				b_p_p;
 	int				size_line;
 	int				endian;
-	int				instructions;
 	int				mpx;
 	int				mpy;
 	t_win			win;
@@ -71,6 +75,6 @@ int					close_window(void);
 int					key_map(int key, t_mom *mom);
 int					mouse_move(int x, int y, t_mom *mom);
 int					mouse_button(int button, int x, int y, t_mom *mom);
-int					key_hook(t_mom *mom);
+int					draw_fractals(t_mom *mom);
 
 #endif
