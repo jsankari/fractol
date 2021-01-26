@@ -6,7 +6,7 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 12:12:51 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 20:23:17 by jsankari         ###   ########.fr       */
+/*   Updated: 2021/01/26 23:02:42 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ int					key_map(int key, t_mom *mom);
 int					mouse_move(int x, int y, t_mom *mom);
 int					mouse_button(int button, int x, int y, t_mom *mom);
 int					draw_fractals(t_mom *mom);
+void				calculate_z(t_mom *mom);
+int					iterations(t_mom *mom);
+void				ft_color(double i, t_mom *mom);
 
 #endif

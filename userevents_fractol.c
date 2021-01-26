@@ -6,7 +6,7 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 18:52:52 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 14:03:23 by jsankari         ###   ########.fr       */
+/*   Updated: 2021/01/26 22:03:13 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		key_map(int key, t_mom *mom)
 		mom->loc.zoom *= 1.05;
 	if (key == KEY_Z)
 		mom->loc.zoom *= 0.95;
-	if (key == KEY_S && mom->reim.maxit < 1000)
+	if (key == KEY_S && mom->reim.maxit < 500)
 		mom->reim.maxit += 10;
 	if (key == KEY_X && mom->reim.maxit > 20)
 		mom->reim.maxit -= 10;

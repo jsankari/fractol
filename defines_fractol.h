@@ -6,7 +6,7 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 18:02:47 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 13:59:54 by jsankari         ###   ########.fr       */
+/*   Updated: 2021/01/26 23:07:44 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,5 @@
 # define KEY_Z 122
 # define KEY_S 115
 # define KEY_X 120
-# define KEY_E 101
-# define KEY_C 99
 
 #endif
