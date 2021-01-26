@@ -6,7 +6,7 @@
 #    By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 17:53:03 by jsankari          #+#    #+#              #
-#    Updated: 2021/01/05 21:36:55 by jsankari         ###   ########.fr        #
+#    Updated: 2021/01/26 13:43:40 by jsankari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fractol
 
 SRCS = main_fractol.c \
 errors_fractol.c \
-keys_fractol.c \
+userevents_fractol.c \
 keyhook_fractol.c \
 
 OBJ = $(SRCS:.c=.o)

@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys_fractol.c                                     :+:      :+:    :+:   */
+/*   userevents_fractol.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 18:52:52 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/24 10:47:54 by jsankari         ###   ########.fr       */
+/*   Updated: 2021/01/26 14:03:23 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-// REMOVE THIS BEFORE RETURN
-#include <stdio.h>
 
 int		key_map(int key, t_mom *mom)
 {
@@ -29,21 +27,32 @@ int		key_map(int key, t_mom *mom)
 	if (key == KEY_RIGHT)
 		mom->loc.offx += 8;
 	if (key == KEY_A)
-	{
 		mom->loc.zoom *= 1.05;
-		//mom->reim.minre *= 1.05;
-		//mom->reim.maxre *= 1.05;
-		//mom->reim.minim *= 1.05;
-		//mom->reim.maxim *= 1.05;
-	}
 	if (key == KEY_Z)
-	{
 		mom->loc.zoom *= 0.95;
-		//mom->reim.minre *= 0.95;
-		//mom->reim.maxre *= 0.95;
-		//mom->reim.minim *= 0.95;
-		//mom->reim.maxim *= 0.95;
-	}
-	//printf("offx = %f\noffy = %f\n", mom->loc.offx, mom->loc.offy);
+	if (key == KEY_S && mom->reim.maxit < 1000)
+		mom->reim.maxit += 10;
+	if (key == KEY_X && mom->reim.maxit > 20)
+		mom->reim.maxit -= 10;
+	return (0);
+}
+
+int		mouse_move(int x, int y, t_mom *mom)
+{
+	mom->mpx = x;
+	mom->mpy = y;
+	return (0);
+}
+
+int		mouse_button(int button, int x, int y, t_mom *mom)
+{
+	if (button == 4)
+		mom->loc.zoom *= 1.05;
+	if (button == 5)
+		mom->loc.zoom *= 0.95;
+	if (x == 3000)
+		return (0);
+	if (y == 3000)
+		return (0);
 	return (0);
 }
