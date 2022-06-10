@@ -6,13 +6,14 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 18:02:47 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 23:07:44 by jsankari         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:23:36 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_FRACTOL_H
 # define DEFINES_FRACTOL_H
 
+# define C_WHITE	0xFFFFFF
 # define C_PURPLE	0x8B00FF
 # define C_INDIGO	0x2E2B5F
 # define C_BLUE		0x0000FF

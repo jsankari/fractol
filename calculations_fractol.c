@@ -6,7 +6,7 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 22:59:25 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 23:01:45 by jsankari         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:55:49 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ mom->reim.c_im;
 	mom->reim.z_re = mom->reim.z_re2 - mom->reim.z_im2 + mom->reim.c_re;
 }
 
-int		iterations(t_mom *mom)
+int	iterations(t_mom *mom)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < mom->reim.maxit)

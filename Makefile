@@ -6,7 +6,7 @@
 #    By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 17:53:03 by jsankari          #+#    #+#              #
-#    Updated: 2021/01/26 23:01:59 by jsankari         ###   ########.fr        #
+#    Updated: 2022/06/10 15:51:40 by jsankari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,45 +22,31 @@ OBJ = $(SRCS:.c=.o)
 
 LIBRARY = libft/libft.a
 
-INCLUDE = -I /usr/local/include
+MINILIBX = minilibx/libmlx.a
 
-MLX = -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
-
-MLXHOME = -L /usr/local/lib -lmlx -I /usr/local/X11/include -L /usr/X11/lib -lX11 -lXext -framework OpenGL -framework Appkit
-
-MLXLINUX = -L /usr/local/lib -lmlx -I /usr/local/include/X11 -L /usr/lib/X11 -lX11 -lXext
+XFLAGS = -I /usr/local/include/X11 -L /usr/X11/lib -lX11 -lXext -framework OpenGL -framework Appkit
 
 FLAGS = -Wall -Wextra -Werror -g
 
 all : $(NAME)
 
-$(NAME) : 
+$(NAME) : $(OBJ)
 	@$(MAKE) -C libft
-	@gcc $(FLAGS) $(INCLUDE) -c $(SRCS) 
-	@gcc $(FLAGS) $(LIBRARY) $(OBJ) $(MLX) -o $(NAME)
-	@echo "[ Fractol executable compiled ]"
-
-home :
-	@$(MAKE) -C libft
-	@gcc $(FLAGS) $(INCLUDE) -c $(SRCS) 
-	@gcc $(FLAGS) $(LIBRARY) $(OBJ) $(MLXHOME) -o $(NAME)
-	@echo "[ Fractol executable compiled ]"
-
-linux :
-	@$(MAKE) -C libft
-	@gcc $(FLAGS) $(INCLUDE) -c $(SRCS)
-	gcc $(FLAGS) $(OBJ) $(LIBRARY) $(MLXLINUX) -o $(NAME)
-	@echo "[ Fractol executable compiled ]"
+	@$(MAKE) -C minilibx
+	@gcc $(FLAGS) -c $(SRCS) 
+	@gcc $(FLAGS) $(OBJ) $(LIBRARY) $(MINILIBX) $(XFLAGS) -o $(NAME)
+	@echo "[ $(NAME) executable compiled ]"
 
 clean :
 	@$(MAKE) clean -C libft
+	@$(MAKE) clean -C minilibx
 	@rm -f $(OBJ)
-	@echo "[ Fractol objects deleted ]"
+	@echo "[ $(NAME) objects deleted ]"
 
 fclean : clean
 	@$(MAKE) fclean -C libft
 	@rm -f $(NAME)
-	@echo [ Fractol executable deleted ]
+	@echo [ $(NAME) executable deleted ]
 
 re : fclean all
 	@$(MAKE) re -C libft

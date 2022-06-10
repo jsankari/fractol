@@ -6,13 +6,13 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 18:52:52 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 23:30:37 by jsankari         ###   ########.fr       */
+/*   Updated: 2022/06/10 16:04:27 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int		key_map(int key, t_mom *mom)
+int	key_map(int key, t_mom *mom)
 {
 	if (key == KEY_ESC)
 		exit(0);
@@ -35,14 +35,14 @@ int		key_map(int key, t_mom *mom)
 	return (0);
 }
 
-int		mouse_move(int x, int y, t_mom *mom)
+int	mouse_move(int x, int y, t_mom *mom)
 {
 	mom->mpx = x;
 	mom->mpy = y;
 	return (0);
 }
 
-int		mouse_button(int button, int x, int y, t_mom *mom)
+int	mouse_button(int button, int x, int y, t_mom *mom)
 {
 	mom->mpx = x;
 	mom->mpy = y;

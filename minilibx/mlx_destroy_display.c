@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors_fractol.c                                   :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/09 18:01:43 by jsankari          #+#    #+#             */
-/*   Updated: 2022/06/10 15:56:14 by jsankari         ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "mlx_int.h"
 
-void	errors(int errcode)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	if (errcode == 1)
-	{
-		ft_putstr_fd("Usage: ./fractol <name_of_fractal> fractals: mandelbrot, \
-julia, burningship\n", 2);
-	}
-	exit(0);
-}
-
-int	close_window(void)
-{
-	exit(0);
+	XCloseDisplay(xvar->display);
 }

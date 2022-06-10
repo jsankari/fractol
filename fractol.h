@@ -6,7 +6,7 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 12:12:51 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 23:29:20 by jsankari         ###   ########.fr       */
+/*   Updated: 2022/06/10 16:16:57 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define FRACTOL_H
 
 # include <math.h>
-# include "mlx.h"
+# include "minilibx/mlx.h"
 # include "defines_fractol.h"
 # include "libft/libft.h"
 
-typedef struct		s_loc
+typedef struct s_loc
 {
 	int				x;
 	int				y;
@@ -27,7 +27,7 @@ typedef struct		s_loc
 	double			zoom;
 }					t_loc;
 
-typedef struct		s_reim
+typedef struct s_reim
 {
 	double			refactor;
 	double			imfactor;
@@ -44,13 +44,13 @@ typedef struct		s_reim
 	double			z_im2;
 }					t_reim;
 
-typedef struct		s_win
+typedef struct s_win
 {
 	int				wid;
 	int				hei;
 }					t_win;
 
-typedef struct		s_mom
+typedef struct s_mom
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
@@ -65,6 +65,7 @@ typedef struct		s_mom
 	t_win			win;
 	t_loc			loc;
 	t_reim			reim;
+	int				instructions;
 }					t_mom;
 
 void				errors(int errcode);
@@ -76,5 +77,6 @@ int					draw_fractals(t_mom *mom);
 void				calculate_z(t_mom *mom);
 int					iterations(t_mom *mom);
 void				ft_color(double i, t_mom *mom);
+void				key_instructions(t_mom *mom);
 
 #endif

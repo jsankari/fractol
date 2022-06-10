@@ -6,7 +6,7 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 19:10:36 by jsankari          #+#    #+#             */
-/*   Updated: 2021/01/26 23:26:54 by jsankari         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:56:55 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	julia(t_mom *mom)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (mom->loc.y < mom->win.hei)
@@ -84,7 +84,7 @@ mom->reim.refactor * mom->loc.zoom;
 	}
 }
 
-int		draw_fractals(t_mom *mom)
+int	draw_fractals(t_mom *mom)
 {
 	mom->loc.y = 0;
 	mom->loc.x = 0;
@@ -98,5 +98,7 @@ int		draw_fractals(t_mom *mom)
 	else
 		errors(1);
 	mlx_put_image_to_window(mom->mlx_ptr, mom->win_ptr, mom->img_ptr, 0, 0);
+	if (mom->instructions == 1)
+		key_instructions(mom);
 	return (0);
 }
