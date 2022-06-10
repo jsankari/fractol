@@ -6,7 +6,7 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 17:57:18 by jsankari          #+#    #+#             */
-/*   Updated: 2022/06/10 16:14:20 by jsankari         ###   ########.fr       */
+/*   Updated: 2022/06/10 16:25:13 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	key_instructions(t_mom *mom)
 			"ZOOM = A/Z || MOUSE SCROLL");
 		mlx_string_put(mom->mlx_ptr, mom->win_ptr, 10, 60, C_WHITE,
 			"MAX ITERATIONS = S/X");
+		mlx_string_put(mom->mlx_ptr, mom->win_ptr, 10, 80, C_WHITE,
+			"INSTRUCTIONS = D");
 	}
 }
 

@@ -6,11 +6,19 @@
 /*   By: jsankari <jsankari@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 18:52:52 by jsankari          #+#    #+#             */
-/*   Updated: 2022/06/10 16:04:27 by jsankari         ###   ########.fr       */
+/*   Updated: 2022/06/10 16:27:21 by jsankari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	instruction_switch(t_mom *mom)
+{
+	if (mom->instructions == 1)
+		mom->instructions = 0;
+	else
+		mom->instructions = 1;
+}
 
 int	key_map(int key, t_mom *mom)
 {
@@ -32,6 +40,8 @@ int	key_map(int key, t_mom *mom)
 		mom->reim.maxit += 10;
 	if (key == KEY_X && mom->reim.maxit > 20)
 		mom->reim.maxit -= 10;
+	if (key == KEY_D)
+		instruction_switch(mom);
 	return (0);
 }
 
